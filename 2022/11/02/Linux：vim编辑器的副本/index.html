@@ -13,7 +13,7 @@
 
 
 
-<title>Hello World | Hexo</title>
+<title>Linux编辑器 | Hexo</title>
 
 
 
@@ -196,7 +196,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Hello World</h1>
+            <h1 class="post-title">Linux编辑器</h1>
             
                 <div class="post-meta">
                     
@@ -205,29 +205,94 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">November 3, 2022&nbsp;&nbsp;22:16:40</a>
+                        Date: <a href="#">November 2, 2022&nbsp;&nbsp;21:35:46</a>
                         </span>
                     
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Linux/">Linux</a>
+                            
+                        </span>
                     
                 </div>
             
         </header>
 
         <div class="post-content">
-            <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
+            <h1 id="vim编辑器"><a href="#vim编辑器" class="headerlink" title="vim编辑器"></a>vim编辑器</h1><h2 id="vim基础"><a href="#vim基础" class="headerlink" title="vim基础"></a>vim基础</h2><p>vim在内存缓冲区中处理数据，只需要输入<code>vim 文件名</code>即可启动vim编辑器，如果文件名表示的文件不存在，则会新开辟一段缓冲区来编辑。</p>
+<p>vim编辑器有两种操作模式：</p>
+<ul>
+<li>普通模式</li>
+<li>插入模式</li>
+</ul>
+<blockquote>
+<p>当刚打开要编辑的文件时，vim编辑器进入普通模式，此时按键会被解释成命令；</p>
+<p>插入模式下，vim会将光标所在的每个键都插入到缓冲区</p>
+</blockquote>
+<p>普通模式下，可以使用方向键在文本区域移动光标，也可以按键命令操作，具体命令如下：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>h</td>
+<td>左移一个字符</td>
+</tr>
+<tr>
+<td>j</td>
+<td>下移一行</td>
+</tr>
+<tr>
+<td>k</td>
+<td>上移一行</td>
+</tr>
+<tr>
+<td>l</td>
+<td>右移一个字符</td>
+</tr>
+<tr>
+<td>PageDown(Ctrl+F)</td>
+<td>下翻一屏</td>
+</tr>
+<tr>
+<td>PageUp(Ctrl+B)</td>
+<td>上翻一屏</td>
+</tr>
+<tr>
+<td>G</td>
+<td>移动到缓冲区的最后一行</td>
+</tr>
+<tr>
+<td>num G</td>
+<td>移动到缓冲区的第num行</td>
+</tr>
+<tr>
+<td>gg</td>
+<td>移动缓冲区的第一行</td>
+</tr>
+<tr>
+<td>q</td>
+<td>如果为修改缓冲区数据，退出</td>
+</tr>
+<tr>
+<td>q!</td>
+<td>取消对缓冲区的修改，退出</td>
+</tr>
+<tr>
+<td>w filename</td>
+<td>将文件保存到另一个文件中</td>
+</tr>
+<tr>
+<td>wq</td>
+<td>将缓冲区数据保存到文件中并退出</td>
+</tr>
+</tbody></table>
+<h3 id="编辑数据"><a href="#编辑数据" class="headerlink" title="编辑数据"></a>编辑数据</h3><h3 id="查找和替换"><a href="#查找和替换" class="headerlink" title="查找和替换"></a>查找和替换</h3>
         </div>
 
         
@@ -241,7 +306,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://example.com/2022/11/03/hello-world/">http://example.com/2022/11/03/hello-world/</a></span>
+                        <span><a href="http://example.com/2022/11/02/Linux%EF%BC%9Avim%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E5%89%AF%E6%9C%AC/">http://example.com/2022/11/02/Linux%EF%BC%9Avim%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E5%89%AF%E6%9C%AC/</a></span>
                     </p>
                 
                 
@@ -264,6 +329,10 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
+                    
+                        <a href="/tags/vim/"># vim</a>
+                    
+                        
                 </span>
             </div>
             <div>
@@ -274,8 +343,10 @@
         </section>
         <section class="post-nav">
             
+                <a class="prev" rel="prev" href="/2022/11/02/Shell%EF%BC%9Ashell%E8%84%9A%E6%9C%AC%E5%85%A5%E9%97%A8%E7%9A%84%E5%89%AF%E6%9C%AC/">shell脚本入门</a>
             
-            <a class="next" rel="next" href="/2022/11/02/Shell%EF%BC%9Ashell%E8%84%9A%E6%9C%AC%E5%85%A5%E9%97%A8%E7%9A%84%E5%89%AF%E6%9C%AC/">shell脚本入门</a>
+            
+            <a class="next" rel="next" href="/2022/11/01/Linux%EF%BC%9ALinux%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E7%9A%84%E5%89%AF%E6%9C%AC/">Linux文件权限</a>
             
         </section>
 

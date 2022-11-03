@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="John Doe">
+
+
+
+
+
+<title>shell基本命令 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Bentham&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Bentham&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">shell基本命令</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">October 30, 2022&nbsp;&nbsp;18:24:00</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Linux/">Linux</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="基本的Shell命令"><a href="#基本的Shell命令" class="headerlink" title="基本的Shell命令"></a>基本的Shell命令</h1><h2 id="启动shell"><a href="#启动shell" class="headerlink" title="启动shell"></a>启动shell</h2><p>GNU bash shell 能够提供对Linux系统的交互式访问。通常作为普通程序运行，在用户登录终端时启动。</p>
+<h2 id="shell提示符"><a href="#shell提示符" class="headerlink" title="shell提示符"></a>shell提示符</h2><p>当登录Linux虚拟控制台后，用户就可以看到shell CLI提示符，表明接下来可以输入shell命令。</p>
+<p>默认的bash shell命令提示符是<code>$</code>,表明等待用户输入</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[kolento@serve ~]$</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>当前用户名为kolento,系统名为serve</p>
+</blockquote>
+<h2 id="bash-手册"><a href="#bash-手册" class="headerlink" title="bash 手册"></a>bash 手册</h2><p><code>man</code>命令可以用来查找存储在Linux系统上的手册。只要在想要查找的工具的名称前面输入<code>man</code>命令即可找到那个命令的对应手册条目。</p>
+<p>当通过<code>man</code>命令查看手册页时，可以通过点击空格键进行翻页，也可以通过回车键逐行查看。</p>
+<p>阅读完手册之后，点击q键即可退出</p>
+<h2 id="浏览文件系统"><a href="#浏览文件系统" class="headerlink" title="浏览文件系统"></a>浏览文件系统</h2><h3 id="Linux文件系统"><a href="#Linux文件系统" class="headerlink" title="Linux文件系统"></a>Linux文件系统</h3><p>Linux系统和Windows系统不同，文件路径没有盘符。</p>
+<p>以下是Linux文件系统的通用目录：</p>
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x2F;</td>
+<td>虚拟目录的根目录。通常不会在这里存储文件</td>
+</tr>
+<tr>
+<td>&#x2F;bin</td>
+<td>二进制目录，存放许多用户级的GNU工具</td>
+</tr>
+<tr>
+<td>&#x2F;boot</td>
+<td>启动目录，用于存放启动文件</td>
+</tr>
+<tr>
+<td>&#x2F;dev</td>
+<td>设备目录，Linux在这个创建设备节点</td>
+</tr>
+<tr>
+<td>&#x2F;etc</td>
+<td>系统配置文件目录</td>
+</tr>
+<tr>
+<td>&#x2F;home</td>
+<td>主目录，Linux在这里创建用户目录</td>
+</tr>
+<tr>
+<td>&#x2F;lib</td>
+<td>库目录，存放系统和应用程序的库文件</td>
+</tr>
+<tr>
+<td>&#x2F;media</td>
+<td>媒体目录，可移动媒体设备的常用挂载点</td>
+</tr>
+<tr>
+<td>&#x2F;mnt</td>
+<td>挂载陌路，另一个可移动媒体设备的常用挂载点</td>
+</tr>
+<tr>
+<td>&#x2F;opt</td>
+<td>可选目录，常用于存放第三方软件包和数据文件</td>
+</tr>
+<tr>
+<td>&#x2F;proc</td>
+<td>进程目录，存放现有硬件及当前进程的相关信息</td>
+</tr>
+<tr>
+<td>&#x2F;root</td>
+<td>root用户的主目录</td>
+</tr>
+<tr>
+<td>&#x2F;sbin</td>
+<td>系统二进制目录，存放许多GNU管理员级工具</td>
+</tr>
+<tr>
+<td>&#x2F;run</td>
+<td>运行目录，存放系统运作时的运行时数据</td>
+</tr>
+<tr>
+<td>&#x2F;srv</td>
+<td>服务目录，存放本地服务的相关文件</td>
+</tr>
+<tr>
+<td>&#x2F;sys</td>
+<td>系统目录，存放系统硬件信息的相关文件</td>
+</tr>
+<tr>
+<td>&#x2F;tmp</td>
+<td>临时目录，可以在该目录中创建和删除临时工作文件</td>
+</tr>
+<tr>
+<td>&#x2F;usr</td>
+<td>用户二进制目录，大量用户级的GNU工具和数据文件都存储在这里</td>
+</tr>
+<tr>
+<td>&#x2F;var</td>
+<td>可变目录，用以存放经常变化的文件，比如日志文件</td>
+</tr>
+</tbody></table>
+<h3 id="遍历目录"><a href="#遍历目录" class="headerlink" title="遍历目录"></a>遍历目录</h3><p>通过<code>cd</code>命令可以将shell会话切换到另一个目录。cd命令的格式如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ./usr</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>cd</code>命令可以接受单个参数，值为想要切换的目录名，如果没有指定切换的目录名，则会切换到用户主目录</p>
+</blockquote>
+<p>这里省略相对路径和绝对路径的介绍</p>
+<h2 id="文件和目录列表"><a href="#文件和目录列表" class="headerlink" title="文件和目录列表"></a>文件和目录列表</h2><p>通过<code>ls</code>命令可以查看文件列表和可用来格式化其输出信息的选项</p>
+<h3 id="基本列表功能"><a href="#基本列表功能" class="headerlink" title="基本列表功能"></a>基本列表功能</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>ls</code>命令输出的列表是按照字母排序的(列排序)</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -a</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>可以将隐藏的文件和普通文件及目录一起显示出来</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -F</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>可以将文件和目录区分开来，目录文件会以&#x2F;结尾</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -R</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>可以递归遍历当前文件夹下的所有文件</p>
+</blockquote>
+<h3 id="显示长列表"><a href="#显示长列表" class="headerlink" title="显示长列表"></a>显示长列表</h3><p>基本的<code>ls</code>命令没有显示太多的关于某个文件的信息，可以通过<code>ls -l</code>可以展示长列表个数的文件输出。</p>
+<p>每一行输出都包含下述信息：</p>
+<ul>
+<li>文件类型：</li>
+<li>文件权限</li>
+<li>文件的硬连接总数</li>
+<li>文件属主的用户名</li>
+<li>文件属组的组名</li>
+<li>文件的大小</li>
+<li>文件上次修改时间</li>
+<li>文件名或目录名</li>
+</ul>
+<h3 id="过滤输出列表"><a href="#过滤输出列表" class="headerlink" title="过滤输出列表"></a>过滤输出列表</h3><p><code>ls</code>命令可以支持定义过滤器，决定显示哪些文件的信息，通过指定特定文件的名称来进行过滤，过滤器中可以使用通配符进行指定：</p>
+<ul>
+<li>？表示一个字符</li>
+<li>*表示零个或者多个字符</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ls -l my_fi?e </span><br><span class="line">ls -l my*</span><br></pre></td></tr></table></figure>
+
+<h2 id="处理文件"><a href="#处理文件" class="headerlink" title="处理文件"></a>处理文件</h2><h3 id="创建文件"><a href="#创建文件" class="headerlink" title="创建文件"></a>创建文件</h3><p><code>touch</code>命令可以创建空文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch a.txt</span><br></pre></td></tr></table></figure>
+
+<h3 id="复制文件"><a href="#复制文件" class="headerlink" title="复制文件"></a>复制文件</h3><p><code>cp</code>命令可以在文件系统中将一个位置复制到另一个位置。</p>
+<p>最基本的用法，需要用到两个参数—源对象和目标对象</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp source destination</span><br></pre></td></tr></table></figure>
+
+<h3 id="制表符自动补全"><a href="#制表符自动补全" class="headerlink" title="制表符自动补全"></a>制表符自动补全</h3><p>在输入文件名&#x2F;目录名时，按下tab键可以让shell自动补全内容</p>
+<h3 id="链接文件"><a href="#链接文件" class="headerlink" title="链接文件"></a>链接文件</h3><h3 id="重命名文件"><a href="#重命名文件" class="headerlink" title="重命名文件"></a>重命名文件</h3><p><code>mv</code>命令可以将文件和目录移动到另一个位置或者重命名。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv file1 file2</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h3><p><code>rm</code>命令可以删除文件。命令格式比较简单</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -i fileName</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>i命令参数可以提示用户是否真的想删除文件，因为bash shell中没有垃圾箱可以查找已经删除的文件，所以参数-i是必要的</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -f # 可以强制删除文件</span><br></pre></td></tr></table></figure>
+
+<h2 id="处理目录"><a href="#处理目录" class="headerlink" title="处理目录"></a>处理目录</h2><h3 id="创建目录"><a href="#创建目录" class="headerlink" title="创建目录"></a>创建目录</h3><p>通过<code>mkdir</code>命令创建目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir new_Dir</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>上面新创建了一个目录文件夹</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p new_Dir/sub_Dir/sub</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>同时创建多个目录和子目录</p>
+</blockquote>
+<h3 id="删除目录"><a href="#删除目录" class="headerlink" title="删除目录"></a>删除目录</h3><p><code>rmdir</code>命令可以删除目录</p>
+<blockquote>
+<p>默认情况下，<code>rmdir</code>命令只删除空目录</p>
+</blockquote>
+<h2 id="查看文件内容"><a href="#查看文件内容" class="headerlink" title="查看文件内容"></a>查看文件内容</h2><h3 id="查看文件类型"><a href="#查看文件类型" class="headerlink" title="查看文件类型"></a>查看文件类型</h3><p><code>file</code>命令探测文件内部，并且知道文件的类型</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">file my_file</span><br><span class="line">my_file:ASCII text</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>可以知道<code>my_file</code>文件是一个text文件，并且编码方式是ASCII</p>
+</blockquote>
+<p>同理，file命令可以区分文件是否是目录</p>
+<p>可以告诉用户这个文件链接到了哪一个文件</p>
+<h3 id="查看整个文件"><a href="#查看整个文件" class="headerlink" title="查看整个文件"></a>查看整个文件</h3><p>如果文本文件的内容很大，一共有三种命令可以查看这个文件。</p>
+<ol>
+<li>cat命令</li>
+</ol>
+<p><code>cat</code>命令是显示文本文件中<code>所有数据</code>的得力工具</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat file1</span><br></pre></td></tr></table></figure>
+
+<p><code>cat</code>命令的其他参数：</p>
+<ul>
+<li>-n:给所有的行加上行号</li>
+<li>-b:给所有有文本的行加上行号</li>
+<li>-T:不让文件中的制表符出现，会用<code>^T</code>替换</li>
+</ul>
+<ol start="2">
+<li>more命令</li>
+</ol>
+<p><code>cat</code>命令的主要缺陷是：一旦运行，就无法控制后面的操作。</p>
+<p><code>more</code>命令会显示文本文件的内容，但是会在显示每页数据之后停下来。可以通过空格键或回车键以逐行向前的方式浏览文本文件。</p>
+<ol start="3">
+<li>less命令</li>
+</ol>
+<p><code>less</code>命令是<code>more</code>命令的升级版</p>
+<h3 id="查看部分文件"><a href="#查看部分文件" class="headerlink" title="查看部分文件"></a>查看部分文件</h3><ol>
+<li>tail命令</li>
+</ol>
+<p><code>tail命令</code>会显示文件最后几行的内容，默认情况下会显示文件的末尾10行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cat log_file</span><br><span class="line">tail log_file</span><br><span class="line">tail -n 3 log_file # 查看文件的最后3行</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>-f 参数可以动态的查看文件的内容，是用来实时监测系统日志的最好方式</p>
+</blockquote>
+<ol start="2">
+<li>head命令</li>
+</ol>
+<p><code>head</code>显示文件开头的内容。默认情况下显示文件前10行的文本。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">head log_file</span><br><span class="line">head -5 log_file # 显示文件前5行的内容</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://example.com/2022/10/30/Linux%EF%BC%9A%E5%9F%BA%E6%9C%AC%E7%9A%84Shell%E5%91%BD%E4%BB%A4%E7%9A%84%E5%89%AF%E6%9C%AC/">http://example.com/2022/10/30/Linux%EF%BC%9A%E5%9F%BA%E6%9C%AC%E7%9A%84Shell%E5%91%BD%E4%BB%A4%E7%9A%84%E5%89%AF%E6%9C%AC/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/shell/"># shell</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2022/10/30/Linux%EF%BC%9ALinux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4%E7%9A%84%E5%89%AF%E6%9C%AC/">Linux系统管理</a>
+            
+            
+            <a class="next" rel="next" href="/2022/10/30/Linux%EF%BC%9ALinux%E6%A6%82%E8%A7%88%E7%9A%84%E5%89%AF%E6%9C%AC/">Linux概览</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

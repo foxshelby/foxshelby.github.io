@@ -13,7 +13,7 @@
 
 
 
-<title>Hello World | Hexo</title>
+<title>UML建模语言介绍 | Hexo</title>
 
 
 
@@ -196,7 +196,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Hello World</h1>
+            <h1 class="post-title">UML建模语言介绍</h1>
             
                 <div class="post-meta">
                     
@@ -205,29 +205,87 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">November 3, 2022&nbsp;&nbsp;22:16:40</a>
+                        Date: <a href="#">October 27, 2022&nbsp;&nbsp;21:55:48</a>
                         </span>
                     
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+                            
+                        </span>
                     
                 </div>
             
         </header>
 
         <div class="post-content">
-            <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
+            <h1 id="UML建模语言"><a href="#UML建模语言" class="headerlink" title="UML建模语言"></a>UML建模语言</h1><p>统一建模语言是一种可视化的标准建模语言，用来分析和设计语言，通过它构造软件系统的蓝图。在设计模式中需要使用UML来分析每一个设计模式的结构。</p>
+<h2 id="UML的结构"><a href="#UML的结构" class="headerlink" title="UML的结构"></a>UML的结构</h2><p>UML也是一种语言，通过图形符号来表达，其结构主要有以下几点：</p>
+<ul>
+<li>视图：<ul>
+<li>用户视图：</li>
+<li>结构视图：</li>
+<li>行为视图：</li>
+<li>实现视图：</li>
+<li>环境视图：</li>
+</ul>
+</li>
+<li>图：<ul>
+<li>用例图</li>
+<li>类图</li>
+<li>对象图</li>
+<li>包图</li>
+<li>组合结构图</li>
+<li>状态图</li>
+<li>活动图</li>
+<li>顺序图</li>
+<li>通信图</li>
+<li>定时图</li>
+<li>交互概览图</li>
+<li>组件图</li>
+<li>部署图</li>
+</ul>
+</li>
+</ul>
+<h2 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h2><p>类图是使用频率最高的UML图之一。</p>
+<h3 id="类与类图"><a href="#类与类图" class="headerlink" title="类与类图"></a>类与类图</h3><p>类图通过出现在系统中的不同类来描述系统的静态结构，类图用来描述不同的类和他们之间的关系。在UML中通过分隔的长方形表示类名、属性、方法。</p>
+<h4 id="类之间的关系"><a href="#类之间的关系" class="headerlink" title="类之间的关系"></a>类之间的关系</h4><ol>
+<li>关联关系：类与类之间有联系，通常将一个类的对象作为另一个类的属性。在UML中通过实线连接有关联的对象所对应的类<ol>
+<li>双向关联：两个类中各自包含对方的类实例</li>
+<li>单向关联：只有一个类中包含另一个类的实例</li>
+<li>自关联：一个类中包含自己的实例属性</li>
+<li>多重性关联：一个类中包含一个数组，其类型为另一个类</li>
+<li>聚合关系：一个类中包含另一个类的实例，但是这个实例的创建可以通过构造器注入的方式实现</li>
+<li>组合关系：一个类中包含另一个类的实例，并且他的实例与该类强关联</li>
+</ol>
+</li>
+<li>依赖关系：某个类的方法中使用到了另一个类的对象作为参数。在UML中通过带箭头的虚线表示</li>
+<li>泛化关系：继承关系</li>
+<li>接口与实现关系：</li>
+</ol>
+<h2 id="面向对象设计原则"><a href="#面向对象设计原则" class="headerlink" title="面向对象设计原则"></a>面向对象设计原则</h2><p>面向对象设计原则主要有以下七大原则：</p>
+<ul>
+<li>单一职责原则：类的职责要单一，不能将太多的职责放在一个类中</li>
+<li>开闭原则：软件实体对扩展是开放的，但对修改是关闭的，即在不修改一个软件实体的基础上去扩展其功能</li>
+<li>里氏代换原则：在软件系统中，一个可以接受基类对象的地方必然可以接受一个子类对象</li>
+<li>依赖倒转原则：要针对抽象层编程，而不要针对具体类编程</li>
+<li>接口隔离原则：使用多个专门的接口来取代一个统一的接口</li>
+<li>合成复用原则：在复用功能时，应该尽量使用组合和聚合关联关系，尽量少使用甚至不适用继承关系</li>
+<li>迪米法则：一个类实例对其他的实例的引用应该越少越好</li>
+</ul>
+<h3 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h3><p>类的职责主要包括两个方面：数据职责和行为职责。数据职责通过属性体现，行为职责通过方法体现。</p>
+<p>不同的职责应该尽可能分隔在不同的类中，如果多个职责总是同时发生改变，那么可以将他们封装在同一类中。</p>
+<p>单一职责原则是实现高内聚、低耦合的指导方针。</p>
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><h3 id="开闭原则"><a href="#开闭原则" class="headerlink" title="开闭原则"></a>开闭原则</h3><p>开闭原则：一个软件实体应当对扩展开放，对修改关闭。也就是说，在设计一个模块的时候，应当使这个模块可以在不被修改的前提下被扩展，也就是不修改源代码的情况下改变这个模块的行为。</p>
+<p>为了实现开闭原则，可以通过定义抽象层的方式，将不同的实现行为在具体的实现层中完成。</p>
+<h3 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h3><p>所有引用基类的地方都能透明的使用子类的对象。</p>
+<blockquote>
+<p>在软件中如果能够使用基类对象，那么一定能够使用子类对象，如果使用的是子类对象，不一定能使用基类对象</p>
+</blockquote>
+<h3 id="依赖倒转原则"><a href="#依赖倒转原则" class="headerlink" title="依赖倒转原则"></a>依赖倒转原则</h3><p>面向接口编程，而不是面向实现编程</p>
+<h3 id="接口隔离原则"><a href="#接口隔离原则" class="headerlink" title="接口隔离原则"></a>接口隔离原则</h3><h3 id="合成复用原则"><a href="#合成复用原则" class="headerlink" title="合成复用原则"></a>合成复用原则</h3><h3 id="迪米特法则"><a href="#迪米特法则" class="headerlink" title="迪米特法则"></a>迪米特法则</h3>
         </div>
 
         
@@ -241,7 +299,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://example.com/2022/11/03/hello-world/">http://example.com/2022/11/03/hello-world/</a></span>
+                        <span><a href="http://example.com/2022/10/27/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%9AUML%E5%BB%BA%E6%A8%A1%E8%AF%AD%E8%A8%80%E7%9A%84%E5%89%AF%E6%9C%AC/">http://example.com/2022/10/27/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%9AUML%E5%BB%BA%E6%A8%A1%E8%AF%AD%E8%A8%80%E7%9A%84%E5%89%AF%E6%9C%AC/</a></span>
                     </p>
                 
                 
@@ -264,6 +322,10 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
+                    
+                        <a href="/tags/UML/"># UML</a>
+                    
+                        
                 </span>
             </div>
             <div>
@@ -274,8 +336,8 @@
         </section>
         <section class="post-nav">
             
+                <a class="prev" rel="prev" href="/2022/10/28/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%9A%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%A6%82%E8%BF%B0%E7%9A%84%E5%89%AF%E6%9C%AC/">设计模式概述</a>
             
-            <a class="next" rel="next" href="/2022/11/02/Shell%EF%BC%9Ashell%E8%84%9A%E6%9C%AC%E5%85%A5%E9%97%A8%E7%9A%84%E5%89%AF%E6%9C%AC/">shell脚本入门</a>
             
         </section>
 

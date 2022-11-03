@@ -13,7 +13,7 @@
 
 
 
-<title>Hello World | Hexo</title>
+<title>Linux文件权限 | Hexo</title>
 
 
 
@@ -196,7 +196,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Hello World</h1>
+            <h1 class="post-title">Linux文件权限</h1>
             
                 <div class="post-meta">
                     
@@ -205,29 +205,56 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">November 3, 2022&nbsp;&nbsp;22:16:40</a>
+                        Date: <a href="#">November 1, 2022&nbsp;&nbsp;22:16:14</a>
                         </span>
                     
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Linux/">Linux</a>
+                            
+                        </span>
                     
                 </div>
             
         </header>
 
         <div class="post-content">
-            <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+            <h1 id="Linux文件权限"><a href="#Linux文件权限" class="headerlink" title="Linux文件权限"></a>Linux文件权限</h1><h2 id="Linux的安全性"><a href="#Linux的安全性" class="headerlink" title="Linux的安全性"></a>Linux的安全性</h2><p>Linux的安全性核心在于用户。每个能够进入Linux系统的用户都被分配唯一的用户账户，对系统中的各个对象的访问权限取决于账户。</p>
+<p>用户权限是通过创建用户时分配的用户ID(UID)来跟踪,在登录系统时是通过<code>登录名</code>。</p>
+<h3 id="x2F-etc-x2F-passwd"><a href="#x2F-etc-x2F-passwd" class="headerlink" title="&#x2F;etc&#x2F;passwd"></a>&#x2F;etc&#x2F;passwd</h3><p>Linux系统是通过<code>/etc/passwd</code>文件来对用户名和对应的UID匹配，找到用户的相关信息。</p>
+<p>root用户是Linux系统的管理员，固定分配给他的UID是0,系统账户的UID为Linux预留的500以下的值，普通用户创建账户时，Linux系统会从500开始将最近的可用的UID分配给这个账户。</p>
+<p><code>/etc/passwd</code>文件中包含的信息如下：</p>
+<ul>
+<li>登录用户名</li>
+<li>用户密码</li>
+<li>用户账户的UID(数字格式)</li>
+<li>用户账户的组ID(数字形式)</li>
+<li>用户账户的文本描述(称为备注字段)</li>
+<li>用户HOME的目录位置</li>
+<li>用户的默认shell</li>
+</ul>
+<h3 id="x2F-etc-x2F-shadow"><a href="#x2F-etc-x2F-shadow" class="headerlink" title="&#x2F;etc&#x2F;shadow"></a>&#x2F;etc&#x2F;shadow</h3><p>只有root用户才可以访问该文件，给Linux系统的密码管理提供了更多的控制。给每个用户账户提供了一条记录保存了9个字段。</p>
+<h3 id="添加新用户"><a href="#添加新用户" class="headerlink" title="添加新用户"></a>添加新用户</h3><p><code>useradd</code>命令可以创建新用户账户及设置用户HOME目录结构。该命令如果不显示声明具体值会用默认值替代。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">useradd -D</span><br><span class="line">GROUP=100</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
+<blockquote>
+<p><code>useradd -D</code>可以查看当前系统用户账户的默认值</p>
+</blockquote>
+<p>具体属性值解释如下：</p>
+<ul>
+<li>用户会被添加到GID为100的公共组</li>
+<li>新用户的HOME目录将会位于&#x2F;home&#x2F;loginname</li>
+<li>新用户账户密码在过期后不会被禁用</li>
+<li>新用户账户未被设置过期日期</li>
+<li>新用户账户将bash shell 作为默认shell</li>
+<li>系统会将&#x2F;etc&#x2F;skel目录下的内容复制到用户的HOME目录下</li>
+<li>系统会为该用户账户在mail目录下创建一个用于接收邮件的文件</li>
+</ul>
+<h3 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h3><p><code>userdel</code>用于删除用户，默认情况下只会删除&#x2F;etc&#x2F;passwd文件中的用户信息，而不会删除系统中属于该账户的任何文件，加上<code>-r</code>参数会删除用户的HOME目录(需要谨慎，不清楚是否包含其他用户的文件)</p>
+<h3 id="修改用户"><a href="#修改用户" class="headerlink" title="修改用户"></a>修改用户</h3><p>Linux修改用户账户的工具有很多</p>
+<h2 id="使用Linux组"><a href="#使用Linux组" class="headerlink" title="使用Linux组"></a>使用Linux组</h2><h2 id="理解文件权限"><a href="#理解文件权限" class="headerlink" title="理解文件权限"></a>理解文件权限</h2><h2 id="改变安全性设置"><a href="#改变安全性设置" class="headerlink" title="改变安全性设置"></a>改变安全性设置</h2>
         </div>
 
         
@@ -241,7 +268,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://example.com/2022/11/03/hello-world/">http://example.com/2022/11/03/hello-world/</a></span>
+                        <span><a href="http://example.com/2022/11/01/Linux%EF%BC%9ALinux%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E7%9A%84%E5%89%AF%E6%9C%AC/">http://example.com/2022/11/01/Linux%EF%BC%9ALinux%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E7%9A%84%E5%89%AF%E6%9C%AC/</a></span>
                     </p>
                 
                 
@@ -264,6 +291,10 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
+                    
+                        <a href="/tags/Linux%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/"># Linux文件权限</a>
+                    
+                        
                 </span>
             </div>
             <div>
@@ -274,8 +305,10 @@
         </section>
         <section class="post-nav">
             
+                <a class="prev" rel="prev" href="/2022/11/02/Linux%EF%BC%9Avim%E7%BC%96%E8%BE%91%E5%99%A8%E7%9A%84%E5%89%AF%E6%9C%AC/">Linux编辑器</a>
             
-            <a class="next" rel="next" href="/2022/11/02/Shell%EF%BC%9Ashell%E8%84%9A%E6%9C%AC%E5%85%A5%E9%97%A8%E7%9A%84%E5%89%AF%E6%9C%AC/">shell脚本入门</a>
+            
+            <a class="next" rel="next" href="/2022/11/01/Linux%EF%BC%9ALinux%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E7%9A%84%E5%89%AF%E6%9C%AC/">Linux环境变量</a>
             
         </section>
 

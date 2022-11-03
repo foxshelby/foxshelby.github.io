@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="John Doe">
+
+
+
+
+
+<title>简单工厂模式 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Bentham&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Bentham&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">简单工厂模式</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">October 29, 2022&nbsp;&nbsp;10:23:35</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h1><blockquote>
+<p>创建型模式是三大类设计模式中最好理解的一类，用于将对象的创建和对象的使用过程分离，降低了耦合，使得软件系统更易于扩展。</p>
+<p>简单工厂模式虽然不是GOF23种设计模式，但是是学习其他创建型设计模式的基础。</p>
+</blockquote>
+<h2 id="简单工厂模式动机与定义"><a href="#简单工厂模式动机与定义" class="headerlink" title="简单工厂模式动机与定义"></a>简单工厂模式动机与定义</h2><p>目的： 有时需要创建一些来自同一父类的类的实例，可以通过定义一个类来专门负责创建这些类的实例。通过传入不同的参数可以确定创建哪一种实例。通过将这个方法设置为静态方法，可以通过类直接调用，所以也被称为静态工厂方法——简单工厂模式。</p>
+<h3 id="动机说明"><a href="#动机说明" class="headerlink" title="动机说明"></a>动机说明</h3><p>将工厂方法视作自动售货机，用户只要选择对应的按钮(参数)，即可获得具体的饮料(实例对象)。</p>
+<h3 id="模式结构"><a href="#模式结构" class="headerlink" title="模式结构"></a>模式结构</h3><p>【图】</p>
+<h3 id="Factory-工厂角色"><a href="#Factory-工厂角色" class="headerlink" title="Factory(工厂角色)"></a>Factory(工厂角色)</h3><p> 工厂角色即工厂类，是简单工厂模式的核心，用于创建所有实例的内部逻辑，工厂方法一般为静态方法，用于被外界直接调用，通过传入的参数确定工厂方法最终返回的具体实例。</p>
+<h3 id="Product-抽象产品角色"><a href="#Product-抽象产品角色" class="headerlink" title="Product(抽象产品角色)"></a>Product(抽象产品角色)</h3><p>抽象产品是简单工厂模式所创建的所有对象的父类，在Java中通常是一个接口，工厂方法创建的所有实例都是这个接口的子类对象。</p>
+<h3 id="Concrete-Product-具体产品角色"><a href="#Concrete-Product-具体产品角色" class="headerlink" title="Concrete Product(具体产品角色)"></a>Concrete Product(具体产品角色)</h3><p>工厂方法创建的具体实例对象，具体的类需要实现上面的Product接口，并实现所有的方法</p>
+<h2 id="模式分析"><a href="#模式分析" class="headerlink" title="模式分析"></a>模式分析</h2><blockquote>
+<p>工厂类根据工厂方法所传入的参数来动态决定应该创建哪一个实例对象。</p>
+</blockquote>
+<p>不使用简单工厂模式的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">pay</span><span class="params">(String payType)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(payType.equals(<span class="string">&quot;cash&quot;</span>))&#123;</span><br><span class="line">    <span class="comment">//现金支付的处理代码</span></span><br><span class="line">  &#125;<span class="keyword">else</span> <span class="keyword">if</span>(payType.equals(<span class="string">&quot;creditType&quot;</span>))&#123;</span><br><span class="line">    <span class="comment">//信用卡支付的处理代码</span></span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="comment">//其他支付类型的代码</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果不使用简单工厂模式，当支付种类太多时，该方法的代码量相当冗长，并且每次增加新的支付方式时，都必须修改这个方法的代码，增加if判断来扩展。</p>
+</blockquote>
+<p>使用简单工厂模式下的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">AbstractPay</span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">pay</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>定义了一个抽象类以及支付方法。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CashPay</span> <span class="keyword">extends</span> <span class="title class_">AbstractPay</span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">pay</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="comment">//现金的支付方式</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>为每一种支付方式创建具体的实现类，并在<code>pay()</code>方法中定义自己的支付逻辑</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PayMethodFactory</span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> AbstractPay <span class="title function_">getPayMethod</span><span class="params">(String type)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(type.equals(<span class="string">&quot;cash&quot;</span>))&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">CashPay</span>();</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>()&#123;</span><br><span class="line">      ...</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>工厂方法的返回值类型必须是抽象类，这里使用了多态，调用工厂方法之后，返回的就是具体的实现类，调用方法也就是对应的支付逻辑，这样代码的可读性和耦合性优化了许多</p>
+</blockquote>
+<h2 id="简单工厂模式效果及应用"><a href="#简单工厂模式效果及应用" class="headerlink" title="简单工厂模式效果及应用"></a>简单工厂模式效果及应用</h2><h3 id="优缺点说明"><a href="#优缺点说明" class="headerlink" title="优缺点说明"></a>优缺点说明</h3><h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ol>
+<li>工厂类含有必要的逻辑判断—决定工厂放回的实例具体是哪一个实现类</li>
+<li>用户不需要要知道具体的实现类，只要知道传入的参数即可</li>
+</ol>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ol>
+<li>由于工厂类集中了所有的产品创建逻辑，一旦工厂方法出现问题，整个系统都会受到影响</li>
+<li>使用简单工厂模式会增加类的个数，一定程度上增加了系统的复杂度</li>
+<li>系统扩展困难，如果产品种类太多，每次都需要修改工厂方法的逻辑，不利于系统的扩展和维护</li>
+</ol>
+<h3 id="模式适用环境"><a href="#模式适用环境" class="headerlink" title="模式适用环境"></a>模式适用环境</h3><ol>
+<li>工厂类负责创建的对象比较少：因此工厂方法中的逻辑代码不会太复杂</li>
+<li>客户端只需要知道传入的参数即可，不关心如何创建对象</li>
+</ol>
+<h3 id="模式的应用"><a href="#模式的应用" class="headerlink" title="模式的应用"></a>模式的应用</h3><ol>
+<li>JDK类库中广泛的使用了简单工厂模式，例如<code>java.text.DateFormat</code>类中的<code>getInstance()</code> 就是一个静态的工厂方法</li>
+</ol>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://example.com/2022/10/29/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%9A%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%89%AF%E6%9C%AC/">http://example.com/2022/10/29/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%9A%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%89%AF%E6%9C%AC/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E5%88%9B%E5%BB%BA%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"># 创建型设计模式</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2022/10/29/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%9A%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%89%AF%E6%9C%AC/">工厂方法模式</a>
+            
+            
+            <a class="next" rel="next" href="/2022/10/28/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%9A%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%A6%82%E8%BF%B0%E7%9A%84%E5%89%AF%E6%9C%AC/">设计模式概述</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
